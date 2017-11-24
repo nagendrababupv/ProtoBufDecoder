@@ -1,0 +1,39 @@
+Sample proto:
+********* DND.proto ********************
+message DNDResponse{
+        required bytes transactionId=1;
+        required bytes msisdn=2;
+        required bytes requested_time=3 [default = "000000"];
+        required bytes response_time=4 [default = "000000"];
+        optional bytes opsType=5 [default = "200"];
+        optional bytes gt=6 [default = "0"];
+        optional bytes wds_requested_time=7 [default = "000000"];
+        optional bytes wds_response_time=8 [default = "000000"];
+        optional bytes sleeid=9 [default = "0"];
+        optional bytes wds_status=10 [default = "0"];
+        optional bytes circle_id=11 [default = "0"];
+}
+***************************************
+
+Copy the new .proto that is to be decoded into current path.
+
+
+
+How to generate Decoder
+---------------------
+Please provide the class Name as input to the scrpit. It generates ProtoDecoder.exe
+
+         CreateDecoder.sh <className>
+
+with Reference to above proto below is the example
+        Example:: CreateDecoder.sh DNDResponse
+
+How to Decode
+------------------------
+Decode using the above generated decoder(ProtoDecoder.exe)
+Run :
+                ProtoDecoder.exe <PacketToDecode>
+Example::
+                ./ProtoDecoder.exe 0a0130120a393033353232333038311a0432303137220a313531313434323436382a0332303032005a023334
+
+Note:  Max Length Of Packet can be modified in CreateDecoder.sh. Currently set to 20000 bytes(MaxLengthOfPacket).
